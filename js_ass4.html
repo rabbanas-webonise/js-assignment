@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+
+</head>
+<body>
+
+<div class="container">
+  
+  <form method="post">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name"   placeholder="Enter your name" name="name">
+      <!-- HTML validation to name can accept character or numbers  -->
+      <!-- <input type="text" class="form-control" id="name"   placeholder="Enter your name" name="name"> -->
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+
+      <!-- HTML validation for email  -->
+      <!-- <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"> -->
+      <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+    </div>
+    <button type="button" onclick="save_details()"  class="btn btn-default">Submit</button>
+  </form>
+  <button type="button" onclick="show_details()" class="btn btn-default">Show  Users</button>
+  
+  <table class="table" >
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>TimeStamp</th>
+      </tr>
+    </thead>
+  </table>  
+  <table class="table" id="show">
+  
+  </table>
+</div>
+  <script>
+    // sessionStorage.removeItem('data');
+     function isAlphaNumeric(str) {
+ 			  var code, i, len;
+
+ 		 		for (i = 0, len = str.length; i < len; i++){
+						code = str.charCodeAt(i);
+						if (!(code > 47 && code < 58) && // numeric (0-9)
+						!(code > 64 && code < 91) && // upper alpha (A-Z)
+						!(code > 96 && code < 123)) { // lower alpha (a-z)
+						  return false;
+   		 }
+ 	    }
+  	return true;
+	};
+	function save_details() {
+	    if (document.getElementById('name').value=="" ) {
+					alert('Name could not left blank...');
+					return false;
+    	}
+   	  if (document.getElementById('email').value=="" ) {
+					alert('Email could not left blank...');
+					return false;
+    	}
+    	if (!/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(document.getElementById('email').value)) {
+			    alert('Email is not valid...');
+			    return false;
+		  }
+    	if (!isAlphaNumeric(document.getElementById('name').value) ) {
+					alert('Name is not proper...');
+					return false;
+   		 }
+
+
+ 	  	if (!sessionStorage.data) {
+    
+    			sessionStorage.setItem("data",document.getElementById('name').value);
+      		sessionStorage.setItem(document.getElementById('name').value,document.getElementById('email').value+"<td>" +   new Date());
+
+                          // console.log(sessionStorage.data+"!!!!");
+
+			} 
+	 		 else{
+    			sessionStorage.setItem("data",sessionStorage.getItem("data")+","+document.getElementById('name').value);
+   		    sessionStorage.setItem(document.getElementById('name').value,document.getElementById('email').value+"<td>"+   new Date());
+    
+                      // console.log(sessionStorage.data+"@@@@");
+    
+				}
+       return false;
+  }
+            
+  function show_details() {
+            var temp=sessionStorage.data;
+            temp=temp.split(",");
+                 
+                 //console.log(data);
+             var table="";
+             if (sessionStorage.data) {            
+                    for (var i = 0; i < temp.length; i++){
+		           				 table+="<tr><td>"+temp[i]+"</td><td>"+sessionStorage.getItem(temp[i])+"</td></tr>";
+		           
+		          							 //console.log(sessionStorage.getItem(temp[i]));
+                     }
+                  document.getElementById('show').innerHTML=table;
+                   
+              }
+            else
+                document.getElementById('show').innerHTML='No data Present';
+   }
+
+            
+</script>
+
+</body>
+</html>
