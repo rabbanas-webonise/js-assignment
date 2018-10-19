@@ -8,19 +8,20 @@
   </head>
   <body>
     <script type="text/javascript">
+    var pause1,pause2,pause3;
     function multiplewindow() {
-          var window1=window.open("https://www.w3schools.com");
-          var window2=window.open("https://www.google.com");
-          var window3=window.open("https://www.youtube.com");
+        var window1=window.open("https://www.w3schools.com");
+        var window2=window.open("https://www.google.com");
+        var window3=window.open("https://www.youtube.com");
 
-		     setTimeout(function(){ window1.close() }, 3000000);
-		     setTimeout(function(){ window2.close() }, 2000000);
-		     setTimeout(function(){ window3.close() }, 1000000);
+		    pause1 =setTimeout(function(){ window1.close() }, 3000);
+		    pause2=setTimeout(function(){ window2.close() }, 2000);
+		    pause3=setTimeout(function(){ window3.close() }, 1000);
     }
    function pauseloading() {
-      clearTimeout(window1);
-      clearTimeout(window2);
-      clearTimeout(window3);
+      clearTimeout(pause1);
+      clearTimeout(pause2);
+      clearTimeout(pause3);
      
 
     }

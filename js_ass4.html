@@ -15,7 +15,7 @@
   <form method="post">
     <div class="form-group">
       <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name"   placeholder="Enter your name" name="name">
+      <input type="text" class="form-control" id="name"   placeholder="Enter your name" name="name" required>
       <!-- HTML validation to name can accept character or numbers  -->
       <!-- <input type="text" class="form-control" id="name"   placeholder="Enter your name" name="name"> -->
     </div>
@@ -25,7 +25,7 @@
 
       <!-- HTML validation for email  -->
       <!-- <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"> -->
-      <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+      <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" required>
     </div>
     <button type="button" onclick="save_details()"  class="btn btn-default">Submit</button>
   </form>
@@ -49,7 +49,7 @@
      function isAlphaNumeric(str) {
  			  var code, i, len;
 
- 		 		for (i = 0, len = str.length; i < len; i++){
+ 		 		for (i = 0, len = str.length; i < len; i++) {
 						code = str.charCodeAt(i);
 						if (!(code > 47 && code < 58) && // numeric (0-9)
 						!(code > 64 && code < 91) && // upper alpha (A-Z)
@@ -97,22 +97,22 @@
   }
             
   function show_details() {
-            var temp=sessionStorage.data;
-            temp=temp.split(",");
+      var temp=sessionStorage.data;
+      temp=temp.split(",");
                  
                  //console.log(data);
-             var table="";
-             if (sessionStorage.data) {            
-                    for (var i = 0; i < temp.length; i++){
-		           				 table+="<tr><td>"+temp[i]+"</td><td>"+sessionStorage.getItem(temp[i])+"</td></tr>";
+      var table="";
+      if (sessionStorage.data) {            
+          for (var i = 0; i < temp.length; i++) {
+		          table+="<tr><td>"+temp[i]+"</td><td>"+sessionStorage.getItem(temp[i])+"</td></tr>";
 		           
 		          							 //console.log(sessionStorage.getItem(temp[i]));
-                     }
-                  document.getElementById('show').innerHTML=table;
+          }
+          document.getElementById('show').innerHTML=table;
                    
-              }
-            else
-                document.getElementById('show').innerHTML='No data Present';
+      }
+      else
+        document.getElementById('show').innerHTML='No data Present';
    }
 
             
