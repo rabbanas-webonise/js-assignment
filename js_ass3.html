@@ -1,0 +1,34 @@
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <script type="text/javascript">
+    var pause1,pause2,pause3;
+    function multiplewindow() {
+        var window1=window.open("https://www.w3schools.com");
+        var window2=window.open("https://www.google.com");
+        var window3=window.open("https://www.youtube.com");
+
+		    pause1 =setTimeout(function(){ window1.close() }, 3000);
+		    pause2=setTimeout(function(){ window2.close() }, 2000);
+		    pause3=setTimeout(function(){ window3.close() }, 1000);
+    }
+   function pauseloading() {
+      clearTimeout(pause1);
+      clearTimeout(pause2);
+      clearTimeout(pause3);
+     
+
+    }
+    </script>
+    <input onclick="multiplewindow()" type="button" value="load" >
+    <input onclick="pauseloading()" type="button" value="pause" >
+  </body>
+</html>
+
+
